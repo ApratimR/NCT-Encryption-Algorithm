@@ -19,6 +19,7 @@ A **EXPERIMENTAL** symmetric encryption algorithm which instead of generating ci
 
 * make sure you have `NUMPY` (Thise was made on version `1.19.2`)
 * make sure you have the `FNNH.py` file in the same directory (get it from [FNNH])
+* or just download this repo as it has FNNH already with it.
 
 
 [FNNH]:https://github.com/ApratimR/FNN-Hash
@@ -27,7 +28,6 @@ A **EXPERIMENTAL** symmetric encryption algorithm which instead of generating ci
 
 ```python
 from NCTEA import NECTA
-
 
 key = "test"
 data = "qwerty"
