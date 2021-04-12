@@ -10,10 +10,10 @@ def NECTA(data="",key="",mode=1,stress=1):
 
 	key = (str) the main key
 
-	mode = (int) determines the mode of operation(1 = encrypt, 2 = decrypt) 
+	mode = (int) determines the mode of operation(1 = encrypt, 2 = decrypt)
 	Default mode is set to 1(encryption mode)
 
-	stress = (int) the amount of Instruction cycles required to do the 
+	stress = (int) the amount of Instruction cycles required to do the
 	whole operation(Default = 1)
 	"""
 
@@ -141,44 +141,44 @@ def NECTA(data="",key="",mode=1,stress=1):
 		raise Exception("enter a valid stress data type")
 
 
-	hashed_key = FNNH(data=key,hash_size=128,rounds=128*stress)
+	hashed_key = FNNH(data=key,hash_size=128,rounds=16*stress)
 	hashed_key = str_to_int(hashed_key)
-	
+
 	if mode == 1:
 		#encrypt
 		data = str_to_int(encodedata(data))
 		round_encryption_array = main_array_messup(key=hashed_key[0:64],thearray=encryption_array)
 		counter=0
 		data = np.roll(data,hashed_key[hashed_key[127]+64])
-		
+
 		for temp in range(len(data)):
 			data[temp] = round_encryption_array[counter].tolist().index(data[temp])
 			counter+=1
 			if counter == 64:
-				hashed_key=FNNH(data=key,hash_size=128,rounds=8*stress)
+				hashed_key=FNNH(data=key,hash_size=128,rounds=4*stress)
 				hashed_key = str_to_int(hashed_key)
 				round_encryption_array = main_array_messup(key=hashed_key[0:64],thearray=round_encryption_array)
 				counter=0
-		
+
 		data = int_to_str(data)
 		return data
 
-		
+
 
 	if mode == 2:
 		data = str_to_int(data)
 		round_encryption_array = main_array_messup(key=hashed_key[0:64],thearray=encryption_array)
 		tempkeyroll = hashed_key[hashed_key[127]+64]
 		counter=0
-		
+
 		for temp in range(len(data)):
-		
-		
+
+
 			data[temp] = round_encryption_array[counter][data[temp]]
 
 			counter+=1
 			if counter == 64:
-				hashed_key=FNNH(data=key,hash_size=128,rounds=8*stress)
+				hashed_key=FNNH(data=key,hash_size=128,rounds=4*stress)
 				hashed_key = str_to_int(hashed_key)
 				round_encryption_array = main_array_messup(key=hashed_key[0:64],thearray=round_encryption_array)
 				counter=0
@@ -187,6 +187,6 @@ def NECTA(data="",key="",mode=1,stress=1):
 		data = np.roll(data,-tempkeyroll)
 		data = int_to_str(data)
 		return decodedata(data)
-	
+
 	else:
 		raise Exception("invalid option entered")

@@ -18,11 +18,8 @@ A **EXPERIMENTAL** symmetric encryption algorithm which instead of generating ci
 ### Requirements
 
 * make sure you have `NUMPY` (Thise was made on version `1.19.2`)
-* make sure you have the `FNNH.py` file in the same directory (get it from [FNNH])
-* or just download this repo as it has FNNH already with it.
+* make sure you have the `FNNH` (run the command `pip install FNNH` to install)
 
-
-[FNNH]:https://github.com/ApratimR/FNN-Hash
 
 ### HOW TO USE
 
